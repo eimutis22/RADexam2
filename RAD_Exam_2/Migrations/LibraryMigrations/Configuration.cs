@@ -15,11 +15,21 @@ namespace RAD_Exam_2.Migrations.LibraryMigrations
             MigrationsDirectory = @"Migrations\LibraryMigrations";
         }
 
-        protected override void Seed(RAD_Exam_2.Models.LibraryModels.LibraryDbContext context)
+        protected override void Seed(RAD_Exam_2.Models.LibraryModels.LibraryDbContext c)
         {
-            //SeedMembers(context);
-            //SeedBooks(context);
+            //SeedMembers(c);
+            //SeedBooks(c);
+            SeedLoans(c);
+        }
 
+        private void SeedLoans(LibraryDbContext c)
+        {
+            c.Loans.AddOrUpdate(l => l.LoanID, new Loan
+            {
+                BookID = 1,
+                MemberID = 1,
+                LoanDate = DateTime.Now
+            });
         }
 
         private void SeedMembers(LibraryDbContext c)
